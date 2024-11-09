@@ -9,11 +9,11 @@ import UIKit
 import SwiftUI
 
 class TabBarController: UITabBarController {
-
+    
     weak var coordinator: CoordinatorFlowController?
     private var selectionLayer = CALayer()
     private var gradientLayer = CAGradientLayer()
-
+    
     private let tabBarBackgroundColor = UIColor(red: 25/255, green: 25/255, blue: 35/255, alpha: 1.0)
     private let indicatorHeight: CGFloat = 3.0
     private let gradientHeight: CGFloat = 50.0
@@ -34,70 +34,32 @@ class TabBarController: UITabBarController {
         cartView.coordinator = coordinator
         let cartHostingController = UIHostingController(rootView: cartView)
         
-        let viewController = UIViewController()
+        // Substituindo o UIViewController vazio por um controlador de view relevante, caso necessário
+        let thirdViewController = UIViewController() // Ou outro controlador adequado
         
+        // Configurando os View Controllers da Tab Bar
+        viewControllers = [cartHostingController, homeHostingController, thirdViewController]
         
-        // Create custom Tab Bar items
-        let customCartItem = createCustomTabBarItem(title: "Carrinho", imageName: "cart.fill")
-        let customHomeItem = createCustomTabBarItem(title: "Home", imageName: "house.fill")
-        let customProfileItem = createCustomTabBarItem(title: "Profile", imageName: "house.fill")
+        // Criando e configurando o CustomTabBar
+        let customTabBar = CustomTabBar(frame: CGRect(x: 0, y: self.view.frame.height - 50, width: self.view.frame.width, height: 50))
+        self.view.addSubview(customTabBar)
         
-        // Create container views for custom Tab Bar items
-        let cartTabBarItemView = UIView()
-        cartTabBarItemView.addSubview(customCartItem)
-        
-        let homeTabBarItemView = UIView()
-        homeTabBarItemView.addSubview(customHomeItem)
-        
-        let profileTabBarItemView = UIView()
-        profileTabBarItemView.addSubview(customProfileItem)
-        
-        // Set up container views within the Tab Bar
-        tabBar.addSubview(cartTabBarItemView)
-        tabBar.addSubview(homeTabBarItemView)
-        tabBar.addSubview(profileTabBarItemView)
-        
-        // Position items relative to the tabBar width (distribute evenly)
-        let tabBarWidth = self.view.frame.width
-        let itemWidth: CGFloat = 100
-        let spacing = (tabBarWidth - (itemWidth * 3)) / 4  // Adjust spacing between items
-
-        // Positioning of the custom items
-        homeTabBarItemView.frame.origin = CGPoint(x: spacing + itemWidth, y: 0)
-        cartTabBarItemView.frame.origin = CGPoint(x: spacing, y: 0)
-        profileTabBarItemView.frame.origin = CGPoint(x: spacing + itemWidth * 2, y: 0)
-        
-        // Defining Tab Bar item sizes
-        homeTabBarItemView.frame.size = CGSize(width: itemWidth, height: 50)
-        cartTabBarItemView.frame.size = CGSize(width: itemWidth, height: 50)
-        profileTabBarItemView.frame.size = CGSize(width: itemWidth, height: 50)
-        
-        // Set the View Controllers for the Tab Bar
-        viewControllers = [cartHostingController, homeHostingController, viewController]
+        // Observando notificações de mudança de aba (considerar alternativas mais simples)
+        NotificationCenter.default.addObserver(self, selector: #selector(switchToFirst), name: NSNotification.Name("SwitchToFirst"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(switchToSecond), name: NSNotification.Name("SwitchToSecond"), object: nil)
     }
     
-    func createCustomTabBarItem(title: String, imageName: String) -> UIView {
-        // Create image view
-        let imageView = UIImageView(image: UIImage(systemName: imageName))
-        imageView.contentMode = .scaleAspectFit
-        imageView.frame.size = CGSize(width: 24, height: 24)
-        
-        // Create title label
-        let titleLabel = UILabel()
-        titleLabel.text = title
-        titleLabel.textColor = .white
-        titleLabel.font = UIFont.systemFont(ofSize: 12)
-        
-        // Create StackView to contain both image and label
-        let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel])
-        stackView.axis = .horizontal
-        stackView.spacing = 8
-        stackView.alignment = .center
-        stackView.frame.size = CGSize(width: 100, height: 50)  // Adjust size as necessary
-        
-        return stackView
+    // Funções para mudar para o primeiro e segundo view controller
+    @objc private func switchToFirst() {
+        selectedIndex = 0
+        updateSelectionLayerPosition(animated: true, selectedIndex: 0)
     }
-
+    
+    @objc private func switchToSecond() {
+        selectedIndex = 1
+        updateSelectionLayerPosition(animated: true, selectedIndex: 1)
+    }
+    
     private func setupTabBarAppearance() {
         tabBar.tintColor = .white
         tabBar.unselectedItemTintColor = .gray
@@ -130,30 +92,24 @@ class TabBarController: UITabBarController {
         tabBar.layer.addSublayer(selectionLayer)
         tabBar.layer.addSublayer(gradientLayer)
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        gradientLayer.frame.size.width = tabBar.frame.width / CGFloat(tabBar.items?.count ?? 1)
-    }
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        updateSelectionLayerPosition(animated: true)
-    }
-    
-    private func updateSelectionLayerPosition(animated: Bool) {
-        guard let selectedItem = tabBar.selectedItem else { return }
-        let selectedIndex = tabBar.items?.firstIndex(of: selectedItem) ?? 0
+
+    private func updateSelectionLayerPosition(animated: Bool, selectedIndex: Int) {
+        
+        // Calcule a posição X baseada no índice selecionado
         let indicatorPositionX = (tabBar.frame.width / CGFloat(tabBar.items?.count ?? 1)) * CGFloat(selectedIndex)
         
+        // Função de atualização das posições
         let updateFrames = {
             self.selectionLayer.frame.origin.x = indicatorPositionX
             self.gradientLayer.frame.origin.x = indicatorPositionX
         }
         
+        // Se animado, aplicar a animação de transição
         if animated {
             UIView.animate(withDuration: 0.3, animations: updateFrames)
         } else {
             updateFrames()
         }
     }
+
 }
