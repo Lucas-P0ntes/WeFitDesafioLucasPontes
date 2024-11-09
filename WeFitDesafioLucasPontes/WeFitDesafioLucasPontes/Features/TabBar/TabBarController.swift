@@ -9,11 +9,11 @@ import UIKit
 import SwiftUI
 
 class TabBarController: UITabBarController {
-    
+
     weak var coordinator: CoordinatorFlowController?
     private var selectionLayer = CALayer()
     private var gradientLayer = CAGradientLayer()
-    
+
     private let tabBarBackgroundColor = UIColor(red: 25/255, green: 25/255, blue: 35/255, alpha: 1.0)
     private let indicatorHeight: CGFloat = 3.0
     private let gradientHeight: CGFloat = 50.0
@@ -26,27 +26,78 @@ class TabBarController: UITabBarController {
     }
     
     private func setupTabBar() {
-          var homeView = HomeView(viewModel: HomeViewModel())
-          homeView.coordinator = coordinator
-          let homeHostingController = UIHostingController(rootView: homeView)
-          homeHostingController.tabBarItem = UITabBarItem(
-              title: "Home",
-              image: UIImage(systemName: "house"),
-              selectedImage: UIImage(systemName: "house.fill")
-          )
-          
-          var cartView = CartView(viewModel: CartViewModel())
-          cartView.coordinator = coordinator
-          let cartHostingController = UIHostingController(rootView: cartView)
-          cartHostingController.tabBarItem = UITabBarItem(
-              title: "Carrinho",
-              image: UIImage(systemName: "cart"),
-              selectedImage: UIImage(systemName: "cart.fill")
-          )
-          
-          viewControllers = [cartHostingController, homeHostingController]
-      }
+        var homeView = HomeView(viewModel: HomeViewModel())
+        homeView.coordinator = coordinator
+        let homeHostingController = UIHostingController(rootView: homeView)
+        
+        var cartView = CartView(viewModel: CartViewModel())
+        cartView.coordinator = coordinator
+        let cartHostingController = UIHostingController(rootView: cartView)
+        
+        let viewController = UIViewController()
+        
+        
+        // Create custom Tab Bar items
+        let customCartItem = createCustomTabBarItem(title: "Carrinho", imageName: "cart.fill")
+        let customHomeItem = createCustomTabBarItem(title: "Home", imageName: "house.fill")
+        let customProfileItem = createCustomTabBarItem(title: "Profile", imageName: "house.fill")
+        
+        // Create container views for custom Tab Bar items
+        let cartTabBarItemView = UIView()
+        cartTabBarItemView.addSubview(customCartItem)
+        
+        let homeTabBarItemView = UIView()
+        homeTabBarItemView.addSubview(customHomeItem)
+        
+        let profileTabBarItemView = UIView()
+        profileTabBarItemView.addSubview(customProfileItem)
+        
+        // Set up container views within the Tab Bar
+        tabBar.addSubview(cartTabBarItemView)
+        tabBar.addSubview(homeTabBarItemView)
+        tabBar.addSubview(profileTabBarItemView)
+        
+        // Position items relative to the tabBar width (distribute evenly)
+        let tabBarWidth = self.view.frame.width
+        let itemWidth: CGFloat = 100
+        let spacing = (tabBarWidth - (itemWidth * 3)) / 4  // Adjust spacing between items
+
+        // Positioning of the custom items
+        homeTabBarItemView.frame.origin = CGPoint(x: spacing + itemWidth, y: 0)
+        cartTabBarItemView.frame.origin = CGPoint(x: spacing, y: 0)
+        profileTabBarItemView.frame.origin = CGPoint(x: spacing + itemWidth * 2, y: 0)
+        
+        // Defining Tab Bar item sizes
+        homeTabBarItemView.frame.size = CGSize(width: itemWidth, height: 50)
+        cartTabBarItemView.frame.size = CGSize(width: itemWidth, height: 50)
+        profileTabBarItemView.frame.size = CGSize(width: itemWidth, height: 50)
+        
+        // Set the View Controllers for the Tab Bar
+        viewControllers = [cartHostingController, homeHostingController, viewController]
+    }
     
+    func createCustomTabBarItem(title: String, imageName: String) -> UIView {
+        // Create image view
+        let imageView = UIImageView(image: UIImage(systemName: imageName))
+        imageView.contentMode = .scaleAspectFit
+        imageView.frame.size = CGSize(width: 24, height: 24)
+        
+        // Create title label
+        let titleLabel = UILabel()
+        titleLabel.text = title
+        titleLabel.textColor = .white
+        titleLabel.font = UIFont.systemFont(ofSize: 12)
+        
+        // Create StackView to contain both image and label
+        let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel])
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.alignment = .center
+        stackView.frame.size = CGSize(width: 100, height: 50)  // Adjust size as necessary
+        
+        return stackView
+    }
+
     private func setupTabBarAppearance() {
         tabBar.tintColor = .white
         tabBar.unselectedItemTintColor = .gray

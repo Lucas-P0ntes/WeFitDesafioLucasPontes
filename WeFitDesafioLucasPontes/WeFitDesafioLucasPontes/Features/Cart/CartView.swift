@@ -14,7 +14,7 @@ struct CartView: View {
     var body: some View {
         ZStack() {
             Color.black.edgesIgnoringSafeArea(.all)
-            Text(viewModel.text)
+            Text(viewModel.text).foregroundStyle(.white)
         }
     }
 }
