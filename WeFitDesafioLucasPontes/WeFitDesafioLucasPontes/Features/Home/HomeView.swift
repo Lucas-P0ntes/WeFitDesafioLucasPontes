@@ -12,7 +12,10 @@ struct HomeView: View {
     @StateObject var viewModel = HomeViewModel()
     
     var body: some View {
-        Text(viewModel.text)
+        ZStack() {
+            Color.black.edgesIgnoringSafeArea(.all)
+            Text(viewModel.text)
+        }
     }
 }
 

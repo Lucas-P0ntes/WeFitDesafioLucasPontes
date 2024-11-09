@@ -12,7 +12,10 @@ struct CartView: View {
     @StateObject var viewModel = CartViewModel()
     
     var body: some View {
-        Text(viewModel.text)
+        ZStack() {
+            Color.black.edgesIgnoringSafeArea(.all)
+            Text(viewModel.text)
+        }
     }
 }
 
