@@ -9,23 +9,24 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-        var window: UIWindow?
-
-        var coordinator: CoordinatorFlowController?
+    var window: UIWindow?
+    var coordinator: CoordinatorFlowController?
+    
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let windowScene = scene as? UIWindowScene else { return }
         
-        func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-            guard let windowScene = scene as? UIWindowScene else { return }
-            
-            let window = UIWindow (windowScene: windowScene)
-            
-            coordinator = CoordinatorFlowController(navigationController: UINavigationController())
-            let rootViewController = coordinator?.start()
-            
-            window.rootViewController = rootViewController
-            window.makeKeyAndVisible()
-
-            self.window = window
-        }
+        let navigationController = UINavigationController()
+        coordinator = CoordinatorFlowController(navigationController: navigationController)
+        
+        // Inicia o fluxo da aplicação
+        coordinator?.start()
+        
+        let window = UIWindow(windowScene: windowScene)
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+        
+        self.window = window
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
     }
@@ -42,4 +43,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {
     }
 }
+
 
