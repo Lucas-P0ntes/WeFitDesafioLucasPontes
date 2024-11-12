@@ -6,7 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		8E04E0132CE1BA8C0068B30B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8EBE214D2CDFA6BA00BF7C02 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EBE21542CDFA6BA00BF7C02;
+			remoteInfo = WeFitDesafioLucasPontes;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		8E04E00F2CE1BA8C0068B30B /* WeFitDesafioLucasPontesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeFitDesafioLucasPontesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EBE21552CDFA6BA00BF7C02 /* WeFitDesafioLucasPontes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeFitDesafioLucasPontes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -21,6 +32,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		8E04E0102CE1BA8C0068B30B /* WeFitDesafioLucasPontesTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WeFitDesafioLucasPontesTests;
+			sourceTree = "<group>";
+		};
 		8EBE21572CDFA6BA00BF7C02 /* WeFitDesafioLucasPontes */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -32,6 +48,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8E04E00C2CE1BA8C0068B30B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8EBE21522CDFA6BA00BF7C02 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				8EBE21572CDFA6BA00BF7C02 /* WeFitDesafioLucasPontes */,
+				8E04E0102CE1BA8C0068B30B /* WeFitDesafioLucasPontesTests */,
 				8EBE21562CDFA6BA00BF7C02 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				8EBE21552CDFA6BA00BF7C02 /* WeFitDesafioLucasPontes.app */,
+				8E04E00F2CE1BA8C0068B30B /* WeFitDesafioLucasPontesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +86,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8E04E00E2CE1BA8C0068B30B /* WeFitDesafioLucasPontesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E04E0152CE1BA8C0068B30B /* Build configuration list for PBXNativeTarget "WeFitDesafioLucasPontesTests" */;
+			buildPhases = (
+				8E04E00B2CE1BA8C0068B30B /* Sources */,
+				8E04E00C2CE1BA8C0068B30B /* Frameworks */,
+				8E04E00D2CE1BA8C0068B30B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8E04E0142CE1BA8C0068B30B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8E04E0102CE1BA8C0068B30B /* WeFitDesafioLucasPontesTests */,
+			);
+			name = WeFitDesafioLucasPontesTests;
+			packageProductDependencies = (
+			);
+			productName = WeFitDesafioLucasPontesTests;
+			productReference = 8E04E00F2CE1BA8C0068B30B /* WeFitDesafioLucasPontesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8EBE21542CDFA6BA00BF7C02 /* WeFitDesafioLucasPontes */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8EBE21682CDFA6BC00BF7C02 /* Build configuration list for PBXNativeTarget "WeFitDesafioLucasPontes" */;
@@ -93,6 +141,10 @@
 				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
+					8E04E00E2CE1BA8C0068B30B = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 8EBE21542CDFA6BA00BF7C02;
+					};
 					8EBE21542CDFA6BA00BF7C02 = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -113,11 +165,19 @@
 			projectRoot = "";
 			targets = (
 				8EBE21542CDFA6BA00BF7C02 /* WeFitDesafioLucasPontes */,
+				8E04E00E2CE1BA8C0068B30B /* WeFitDesafioLucasPontesTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8E04E00D2CE1BA8C0068B30B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8EBE21532CDFA6BA00BF7C02 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -128,6 +188,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8E04E00B2CE1BA8C0068B30B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8EBE21512CDFA6BA00BF7C02 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,7 +204,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		8E04E0142CE1BA8C0068B30B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8EBE21542CDFA6BA00BF7C02 /* WeFitDesafioLucasPontes */;
+			targetProxy = 8E04E0132CE1BA8C0068B30B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		8E04E0162CE1BA8C0068B30B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CYQ53H39DL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Academy.WeFitDesafioLucasPontesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeFitDesafioLucasPontes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WeFitDesafioLucasPontes";
+			};
+			name = Debug;
+		};
+		8E04E0172CE1BA8C0068B30B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = CYQ53H39DL;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Academy.WeFitDesafioLucasPontesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeFitDesafioLucasPontes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WeFitDesafioLucasPontes";
+			};
+			name = Release;
+		};
 		8EBE21692CDFA6BC00BF7C02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -314,6 +425,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8E04E0152CE1BA8C0068B30B /* Build configuration list for PBXNativeTarget "WeFitDesafioLucasPontesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E04E0162CE1BA8C0068B30B /* Debug */,
+				8E04E0172CE1BA8C0068B30B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8EBE21502CDFA6BA00BF7C02 /* Build configuration list for PBXProject "WeFitDesafioLucasPontes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
